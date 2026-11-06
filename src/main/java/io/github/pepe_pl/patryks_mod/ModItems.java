@@ -17,8 +17,8 @@ public class ModItems {
         return item;
     } // <- tutaj metoda register się kończy!
 
-    // Nasz zarejestrowany przedmiot:
-    public static final Item PATRYKS_SWORD = register(ModItemIds.PATRYKS_SWORD, Item::new, new Item.Properties());
+    // Nasz zarejestrowany przedmiot z własną klasą:
+    public static final Item PATRYKS_SWORD = register(ModItemIds.PATRYKS_SWORD, PatryksSwordItem::new, new Item.Properties());
 
     // Metoda wymuszająca załadowanie klasy przez Javę:
     public static void initialize() {

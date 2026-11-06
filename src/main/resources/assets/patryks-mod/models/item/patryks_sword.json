@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "patryks-mod:item/patryks_sword"
+  }
+}
