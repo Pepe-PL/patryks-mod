@@ -9,4 +9,6 @@ public class ModItemIds {
         // Create the item key.
         return ResourceKey.create(Registries.ITEM, Main.id(name));
     }
+
+    public static final ResourceKey<Item> PATRYKS_SWORD = create("patryks_sword");
 }
