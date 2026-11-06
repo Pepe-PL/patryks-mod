@@ -1,4 +1,7 @@
 {
   "item.patryks-mod.patryks_sword": "Patryk's Sword",
-  "itemTooltip.patryks-mod.patryks_sword": "This is the Ultra Sword. If it falls into the wrong hands, it could have irreversible consequences for the world."
+  "itemTooltip.patryks-mod.patryks_sword.1": "The Ultra Sword",
+  "itemTooltip.patryks-mod.patryks_sword.2": "If it falls into the wrong hands,",
+  "itemTooltip.patryks-mod.patryks_sword.3": "it could destroy the world.",
+  "creativeTab.patryks-mod": "Patryk's Mod"
 }

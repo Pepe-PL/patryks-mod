@@ -1,4 +1,7 @@
 {
   "item.patryks-mod.patryks_sword": "Miecz Patryka",
-  "itemTooltip.patryks-mod.patryks_sword": "To jest Ultra Miecz. Jeśli wpadnie w niepowołane ręce, może to mieć nieodwracalne skutki dla świata."
+  "itemTooltip.patryks-mod.patryks_sword.1": "Ultra Miecz",
+  "itemTooltip.patryks-mod.patryks_sword.2": "Jeśli wpadnie w niepowołane ręce,",
+  "itemTooltip.patryks-mod.patryks_sword.3": "może zniszczyć ten świat.",
+  "creativeTab.patryks-mod": "Mod Patryka"
 }
