@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": "minecraft:amethyst_shard"
+  },
+  "pattern": [
+    "AAA",
+    "A A"
+  ],
+  "result": {
+    "id": "patryks-mod:patryks_helmet",
+    "components": {
+      "minecraft:enchantments": {
+        "patryks-mod:amethyst_retribution": 2,
+        "patryks-mod:set_bonus": 2
+      }
+    }
+  }
+}
