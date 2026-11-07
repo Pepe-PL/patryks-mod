@@ -29,15 +29,6 @@ public class ModEnchantmentEffects {
     );
 
     public static void initialize() {
-        // Dotknięcie pola wymusza załadowanie klasy i rejestrację efektu w registry.
-        if (LIGHTNING_EFFECT == null) {
-            throw new IllegalStateException("Failed to register lightning_effect");
-        }
-        if (AMETHYST_RETRIBUTION_EFFECT == null) {
-            throw new IllegalStateException("Failed to register amethyst_retribution_effect");
-        }
-        if (SET_BONUS_EFFECT == null) {
-            throw new IllegalStateException("Failed to register set_bonus_effect");
-        }
+        // Sama inicjalizacja klasy wymusza rejestrację statycznych pól w registry.
     }
 }
