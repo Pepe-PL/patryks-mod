@@ -3,6 +3,8 @@ package io.github.pepe_pl.patryks_mod;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.jspecify.annotations.NullMarked;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -23,31 +25,33 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-@SuppressWarnings({"NullableProblems", "deprecation", "resource"})
+@NullMarked
+@SuppressWarnings({"deprecation", "resource"})
 public class PatryksSwordItem extends Item {
+    private static final double ABILITY_RANGE = 28.0;
+    private static final float ABILITY_DAMAGE = 250.0f;
+
     public PatryksSwordItem(Item.Properties properties) {
         super(properties);
     }
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-
-        // 1. Zryw (Dash) w kierunku wzroku gracza:
+        // 1. Silny, długi zryw w kierunku wzroku – bez cooldownu, można spamować w locie:
         Vec3 look = player.getLookAngle();
-        player.setDeltaMovement(look.x * 2.2, Math.max(0.4, look.y * 1.5 + 0.2), look.z * 2.2);
+        player.setDeltaMovement(look.x * 3.6, Math.max(0.55, look.y * 2.2 + 0.35), look.z * 3.6);
         player.hurtMarked = true;
         player.resetFallDistance();
 
         if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
-            // 2. Dźwięki fali dźwiękowej Wardena oraz kryształu ametystu:
             serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 2.0f, 1.2f);
             serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 2.5f, 0.8f);
 
-            // 3. Cząsteczki fali sonicznej i ametystowego portalu wzdłuż wektora ataku:
-            for (int i = 1; i <= 12; i++) {
+            // 2. Fala soniczna leci dalej (28 bloków):
+            int steps = (int) ABILITY_RANGE;
+            for (int i = 1; i <= steps; i++) {
                 double px = player.getX() + look.x * i;
                 double py = player.getEyeY() + look.y * i;
                 double pz = player.getZ() + look.z * i;
@@ -58,19 +62,20 @@ public class PatryksSwordItem extends Item {
                 serverLevel.sendParticles(ParticleTypes.PORTAL, px, py, pz, 8, 0.25, 0.25, 0.25, 0.05);
             }
 
-            // 4. Zadawanie 250 HP obrażeń i odrzucenie wrogów w obszarze fali:
-            AABB shockwaveArea = player.getBoundingBox().expandTowards(look.scale(12.0)).inflate(2.5);
+            AABB shockwaveArea = player.getBoundingBox().expandTowards(look.scale(ABILITY_RANGE)).inflate(2.8);
             List<LivingEntity> targets = serverLevel.getEntitiesOfClass(LivingEntity.class, shockwaveArea,
                     e -> e != player && e.isAlive());
 
             for (LivingEntity target : targets) {
                 target.invulnerableTime = 0;
-                target.hurtServer(serverLevel, serverLevel.damageSources().playerAttack(player), 250.0f);
-                target.setDeltaMovement(target.getDeltaMovement().add(look.x * 1.8, 0.6, look.z * 1.8));
-            }
+                target.hurtServer(serverLevel, serverLevel.damageSources().playerAttack(player), ABILITY_DAMAGE);
+                target.setDeltaMovement(target.getDeltaMovement().add(look.x * 2.2, 0.75, look.z * 2.2));
 
-            // 5. Cooldown: 2.5 sekundy (50 ticków):
-            player.getCooldowns().addCooldown(stack, 50);
+                if (target.isDeadOrDying()) {
+                    HitParticleRings.spawn(serverLevel, target.getX(), target.getY() + 0.2, target.getZ());
+                    KillCelebration.spawn(serverLevel, target.getX(), target.getY(), target.getZ());
+                }
+            }
         }
 
         return InteractionResult.SUCCESS;
@@ -79,29 +84,19 @@ public class PatryksSwordItem extends Item {
     @Override
     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         super.postHurtEnemy(stack, target, attacker);
-        // Reset klatek nietykalności celu po uderzeniu - autokliker może zadawać pełne obrażenia bez opóźnień:
         target.invulnerableTime = 0;
 
-        // Wbudowany na stałe efekt pioruna oraz okręgu błękitno-fioletowych cząsteczek przy każdym trafieniu:
-        if (!attacker.level().isClientSide() && attacker.level() instanceof ServerLevel serverLevel) {
+        Level level = attacker.level();
+        if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
             EntityTypes.LIGHTNING_BOLT.spawn(serverLevel, target.blockPosition(), EntitySpawnReason.TRIGGERED);
-
-            double radius = 2.5;
-            int points = 36;
-            for (int i = 0; i < points; i++) {
-                double angle = 2 * Math.PI * i / points;
-                double px = target.getX() + radius * Math.cos(angle);
-                double py = target.getY() + 0.2;
-                double pz = target.getZ() + radius * Math.sin(angle);
-
-                serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, px, py, pz, 1, 0.0, 0.05, 0.0, 0.01);
-                serverLevel.sendParticles(ParticleTypes.PORTAL, px, py, pz, 3, 0.05, 0.05, 0.05, 0.02);
-                serverLevel.sendParticles(ParticleTypes.WITCH, px, py, pz, 1, 0.0, 0.05, 0.0, 0.01);
-                serverLevel.sendParticles(ParticleTypes.GLOW, px, py + 0.25, pz, 1, 0.05, 0.05, 0.05, 0.02);
-            }
+            HitParticleRings.spawn(serverLevel, target.getX(), target.getY() + 0.2, target.getZ());
 
             serverLevel.playSound(null, target.getX(), target.getY(), target.getZ(),
                     SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 2.0f, 1.2f);
+
+            if (target.isDeadOrDying()) {
+                KillCelebration.spawn(serverLevel, target.getX(), target.getY(), target.getZ());
+            }
         }
     }
 

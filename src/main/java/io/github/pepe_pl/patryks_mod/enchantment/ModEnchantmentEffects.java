@@ -7,7 +7,6 @@ import io.github.pepe_pl.patryks_mod.enchantment.effect.LightningEnchantmentEffe
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-@SuppressWarnings("unused")
 public class ModEnchantmentEffects {
     public static final MapCodec<LightningEnchantmentEffect> LIGHTNING_EFFECT = Registry.register(
             BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
@@ -16,5 +15,9 @@ public class ModEnchantmentEffects {
     );
 
     public static void initialize() {
+        // Dotknięcie pola wymusza załadowanie klasy i rejestrację efektu w registry.
+        if (LIGHTNING_EFFECT == null) {
+            throw new IllegalStateException("Failed to register lightning_effect");
+        }
     }
 }

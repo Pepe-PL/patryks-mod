@@ -44,7 +44,7 @@ public class ModItems {
     public static final CreativeModeTab PATRYKS_TAB = FabricCreativeModeTab.builder()
             .icon(() -> new ItemStack(ModItems.PATRYKS_SWORD))
             .title(Component.translatable("creativeTab.patryks-mod"))
-            .displayItems((params, output) -> output.accept(ModItems.PATRYKS_SWORD))
+            .displayItems((_, output) -> output.accept(ModItems.PATRYKS_SWORD))
             .build();
 
     // Metoda wymuszająca załadowanie klasy przez Javę:
