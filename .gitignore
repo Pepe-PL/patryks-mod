@@ -5,6 +5,6 @@ out/
 .vscode/
 *.DS_Store
 run/
-Tutorial.txt
 context/Chat_Context.txt
 context/tutorial.txt
+TODO.md

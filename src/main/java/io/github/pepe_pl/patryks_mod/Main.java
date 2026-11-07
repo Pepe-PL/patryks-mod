@@ -11,5 +11,6 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.initialize();
+		io.github.pepe_pl.patryks_mod.enchantment.ModEnchantmentEffects.initialize();
 	}
 }
