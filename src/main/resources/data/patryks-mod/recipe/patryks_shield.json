@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "I": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "AAA",
+    "AIA",
+    " A "
+  ],
+  "result": {
+    "id": "patryks-mod:patryks_shield"
+  }
+}

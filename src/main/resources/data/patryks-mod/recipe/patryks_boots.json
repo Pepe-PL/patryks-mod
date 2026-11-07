@@ -14,7 +14,9 @@
     "components": {
       "minecraft:enchantments": {
         "patryks-mod:amethyst_retribution": 2,
-        "patryks-mod:set_bonus": 2
+        "patryks-mod:set_bonus": 2,
+        "minecraft:fire_protection": 4,
+        "minecraft:feather_falling": 4
       }
     }
   }

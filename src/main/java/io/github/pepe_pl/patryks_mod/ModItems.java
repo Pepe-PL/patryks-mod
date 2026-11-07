@@ -1,5 +1,7 @@
 package io.github.pepe_pl.patryks_mod;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
@@ -9,10 +11,14 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.equipment.ArmorType;
 
 public class ModItems {
@@ -40,7 +46,7 @@ public class ModItems {
     // Stały fioletowy połysk zaklęcia (Enchantment Glint Override) – jak miecz.
     public static final Item PATRYKS_HELMET = register(
             ModItemIds.PATRYKS_HELMET,
-            Item::new,
+            props -> new PatryksArmorItem(props, "patryks_helmet"),
             new Item.Properties()
                     .humanoidArmor(PatryksArmorMaterial.INSTANCE, ArmorType.HELMET)
                     .durability(ArmorType.HELMET.getDurability(PatryksArmorMaterial.BASE_DURABILITY))
@@ -49,7 +55,7 @@ public class ModItems {
 
     public static final Item PATRYKS_CHESTPLATE = register(
             ModItemIds.PATRYKS_CHESTPLATE,
-            Item::new,
+            props -> new PatryksArmorItem(props, "patryks_chestplate"),
             new Item.Properties()
                     .humanoidArmor(PatryksArmorMaterial.INSTANCE, ArmorType.CHESTPLATE)
                     .durability(ArmorType.CHESTPLATE.getDurability(PatryksArmorMaterial.BASE_DURABILITY))
@@ -58,7 +64,7 @@ public class ModItems {
 
     public static final Item PATRYKS_LEGGINGS = register(
             ModItemIds.PATRYKS_LEGGINGS,
-            Item::new,
+            props -> new PatryksArmorItem(props, "patryks_leggings"),
             new Item.Properties()
                     .humanoidArmor(PatryksArmorMaterial.INSTANCE, ArmorType.LEGGINGS)
                     .durability(ArmorType.LEGGINGS.getDurability(PatryksArmorMaterial.BASE_DURABILITY))
@@ -67,11 +73,37 @@ public class ModItems {
 
     public static final Item PATRYKS_BOOTS = register(
             ModItemIds.PATRYKS_BOOTS,
-            Item::new,
+            props -> new PatryksArmorItem(props, "patryks_boots"),
             new Item.Properties()
                     .humanoidArmor(PatryksArmorMaterial.INSTANCE, ArmorType.BOOTS)
                     .durability(ArmorType.BOOTS.getDurability(PatryksArmorMaterial.BASE_DURABILITY))
                     .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
+    );
+
+    // Tarcza Patryka – blokuje 100% obrażeń (poza tagiem bypasses_shield),
+    // super wytrzymała (1024 użycia vs 336 u zwykłej tarczy), naprawiana ametystem.
+    public static final net.minecraft.tags.TagKey<Item> REPAIRS_PATRYKS_SHIELD = net.minecraft.tags.TagKey.create(
+            net.minecraft.core.registries.Registries.ITEM,
+            Main.id("repairs_patryks_shield")
+    );
+
+    public static final Item PATRYKS_SHIELD = register(
+            ModItemIds.PATRYKS_SHIELD,
+            PatryksShieldItem::new,
+            new Item.Properties()
+                    .durability(1024)
+                    .repairable(REPAIRS_PATRYKS_SHIELD)
+                    .equippableUnswappable(EquipmentSlot.OFFHAND)
+                    .delayedComponent(DataComponents.BLOCKS_ATTACKS, (context) -> new BlocksAttacks(
+                            0.25F,
+                            1.0F,
+                            List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
+                            new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
+                            Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
+                            Optional.of(SoundEvents.SHIELD_BLOCK),
+                            Optional.of(SoundEvents.SHIELD_BREAK)
+                    ))
+                    .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
     );
 
     // Klucz naszej własnej zakładki w trybie kreatywnym:
@@ -90,6 +122,7 @@ public class ModItems {
                 output.accept(ModItems.PATRYKS_CHESTPLATE);
                 output.accept(ModItems.PATRYKS_LEGGINGS);
                 output.accept(ModItems.PATRYKS_BOOTS);
+                output.accept(ModItems.PATRYKS_SHIELD);
             })
             .build();
 
@@ -106,6 +139,7 @@ public class ModItems {
                     creativeTab.accept(ModItems.PATRYKS_CHESTPLATE);
                     creativeTab.accept(ModItems.PATRYKS_LEGGINGS);
                     creativeTab.accept(ModItems.PATRYKS_BOOTS);
+                    creativeTab.accept(ModItems.PATRYKS_SHIELD);
                 });
 
         // TODO: Dodać pozostałe narzędzia Patryka (kilof, topór, łopata, motyka)

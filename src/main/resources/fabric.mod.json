@@ -12,6 +12,9 @@
   "entrypoints": {
     "main": [
       "io.github.pepe_pl.patryks_mod.Main"
+    ],
+    "client": [
+      "io.github.pepe_pl.patryks_mod.client.PatryksClient"
     ]
   },
   "mixins": [

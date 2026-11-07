@@ -3,6 +3,9 @@
   "package": "io.github.pepe_pl.patryks_mod.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [],
+  "client": [
+    "SpecialModelRenderersAccessor"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
