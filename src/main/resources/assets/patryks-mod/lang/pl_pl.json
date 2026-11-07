@@ -1,5 +1,9 @@
 {
   "item.patryks-mod.patryks_sword": "Miecz Patryka",
+  "item.patryks-mod.patryks_helmet": "Hełm Patryka",
+  "item.patryks-mod.patryks_chestplate": "Napierśnik Patryka",
+  "item.patryks-mod.patryks_leggings": "Nogawice Patryka",
+  "item.patryks-mod.patryks_boots": "Buty Patryka",
   "itemTooltip.patryks-mod.patryks_sword.1": "Ultra Miecz",
   "itemTooltip.patryks-mod.patryks_sword.2": "Jeśli wpadnie w niepowołane ręce,",
   "itemTooltip.patryks-mod.patryks_sword.3": "może zniszczyć ten świat.",

@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "patryks-mod:patryks"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "patryks-mod:patryks"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "patryks-mod:patryks"
+      }
+    ]
+  }
+}

@@ -11,4 +11,9 @@ public class ModItemIds {
     }
 
     public static final ResourceKey<Item> PATRYKS_SWORD = create("patryks_sword");
+
+    public static final ResourceKey<Item> PATRYKS_HELMET = create("patryks_helmet");
+    public static final ResourceKey<Item> PATRYKS_CHESTPLATE = create("patryks_chestplate");
+    public static final ResourceKey<Item> PATRYKS_LEGGINGS = create("patryks_leggings");
+    public static final ResourceKey<Item> PATRYKS_BOOTS = create("patryks_boots");
 }

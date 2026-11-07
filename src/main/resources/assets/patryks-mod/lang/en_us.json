@@ -1,5 +1,9 @@
 {
   "item.patryks-mod.patryks_sword": "Patryk's Sword",
+  "item.patryks-mod.patryks_helmet": "Patryk's Helmet",
+  "item.patryks-mod.patryks_chestplate": "Patryk's Chestplate",
+  "item.patryks-mod.patryks_leggings": "Patryk's Leggings",
+  "item.patryks-mod.patryks_boots": "Patryk's Boots",
   "itemTooltip.patryks-mod.patryks_sword.1": "The Ultra Sword",
   "itemTooltip.patryks-mod.patryks_sword.2": "If it falls into the wrong hands,",
   "itemTooltip.patryks-mod.patryks_sword.3": "it could destroy the world.",
