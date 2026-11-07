@@ -3,7 +3,9 @@ package io.github.pepe_pl.patryks_mod.enchantment;
 import com.mojang.serialization.MapCodec;
 
 import io.github.pepe_pl.patryks_mod.Main;
+import io.github.pepe_pl.patryks_mod.enchantment.effect.AmethystRetributionEnchantmentEffect;
 import io.github.pepe_pl.patryks_mod.enchantment.effect.LightningEnchantmentEffect;
+import io.github.pepe_pl.patryks_mod.enchantment.effect.SetBonusEnchantmentEffect;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -14,10 +16,28 @@ public class ModEnchantmentEffects {
             LightningEnchantmentEffect.CODEC
     );
 
+    public static final MapCodec<AmethystRetributionEnchantmentEffect> AMETHYST_RETRIBUTION_EFFECT = Registry.register(
+            BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
+            Main.id("amethyst_retribution_effect"),
+            AmethystRetributionEnchantmentEffect.CODEC
+    );
+
+    public static final MapCodec<SetBonusEnchantmentEffect> SET_BONUS_EFFECT = Registry.register(
+            BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
+            Main.id("set_bonus_effect"),
+            SetBonusEnchantmentEffect.CODEC
+    );
+
     public static void initialize() {
         // Dotknięcie pola wymusza załadowanie klasy i rejestrację efektu w registry.
         if (LIGHTNING_EFFECT == null) {
             throw new IllegalStateException("Failed to register lightning_effect");
+        }
+        if (AMETHYST_RETRIBUTION_EFFECT == null) {
+            throw new IllegalStateException("Failed to register amethyst_retribution_effect");
+        }
+        if (SET_BONUS_EFFECT == null) {
+            throw new IllegalStateException("Failed to register set_bonus_effect");
         }
     }
 }
