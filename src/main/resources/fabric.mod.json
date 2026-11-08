@@ -3,9 +3,13 @@
   "id": "patryks-mod",
   "version": "${version}",
   "name": "Patryk's Mod",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "A Minecraft mod for the Hack Club Hackcraft project. Adds Patryk's Sword, Shield and Armor with custom enchantments like Frost Aspect and Frost Resistance.",
+  "authors": [
+    "Pepe-PL"
+  ],
+  "contact": {
+    "sources": "https://github.com/Pepe-PL/patryks-mod"
+  },
   "license": "MIT",
   "icon": "assets/patryks-mod/icon.png",
   "environment": "*",
