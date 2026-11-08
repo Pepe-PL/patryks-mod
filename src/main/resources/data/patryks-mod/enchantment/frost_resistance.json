@@ -1,0 +1,25 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.patryks-mod.frost_resistance"
+  },
+  "effects": {},
+  "max_cost": {
+    "base": 20,
+    "per_level_above_first": 10
+  },
+  "max_level": 4,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 5
+  },
+  "primary_items": "#minecraft:enchantable/armor",
+  "slots": [
+    "head",
+    "chest",
+    "legs",
+    "feet"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 5
+}

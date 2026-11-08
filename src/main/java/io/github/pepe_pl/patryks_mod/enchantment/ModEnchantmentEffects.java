@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 
 import io.github.pepe_pl.patryks_mod.Main;
 import io.github.pepe_pl.patryks_mod.enchantment.effect.AmethystRetributionEnchantmentEffect;
+import io.github.pepe_pl.patryks_mod.enchantment.effect.FrostAspectEnchantmentEffect;
 import io.github.pepe_pl.patryks_mod.enchantment.effect.LightningEnchantmentEffect;
 import io.github.pepe_pl.patryks_mod.enchantment.effect.SetBonusEnchantmentEffect;
 import net.minecraft.core.Registry;
@@ -20,6 +21,12 @@ public class ModEnchantmentEffects {
             BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
             Main.id("amethyst_retribution_effect"),
             AmethystRetributionEnchantmentEffect.CODEC
+    );
+
+    public static final MapCodec<FrostAspectEnchantmentEffect> FROST_ASPECT_EFFECT = Registry.register(
+            BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
+            Main.id("frost_aspect_effect"),
+            FrostAspectEnchantmentEffect.CODEC
     );
 
     public static final MapCodec<SetBonusEnchantmentEffect> SET_BONUS_EFFECT = Registry.register(

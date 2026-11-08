@@ -4,23 +4,28 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -30,9 +35,21 @@ import net.minecraft.world.phys.Vec3;
 public class PatryksSwordItem extends Item {
     private static final double ABILITY_RANGE = 28.0;
     private static final float ABILITY_DAMAGE = 250.0f;
+    private static final ResourceKey<Enchantment> FROST_ASPECT = ResourceKey.create(
+            Registries.ENCHANTMENT, Main.id("frost_aspect"));
 
     public PatryksSwordItem(Item.Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
+        // Miecz zawsze ma Frost Aspect II – także z creative tab, /give i stare egzemplarze:
+        level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(FROST_ASPECT).ifPresent(holder -> {
+            if (EnchantmentHelper.getItemEnchantmentLevel(holder, stack) < 2) {
+                EnchantmentHelper.updateEnchantments(stack, mutable -> mutable.set(holder, 2));
+            }
+        });
     }
 
     @Override
@@ -79,25 +96,6 @@ public class PatryksSwordItem extends Item {
         }
 
         return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        super.postHurtEnemy(stack, target, attacker);
-        target.invulnerableTime = 0;
-
-        Level level = attacker.level();
-        if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
-            EntityTypes.LIGHTNING_BOLT.spawn(serverLevel, target.blockPosition(), EntitySpawnReason.TRIGGERED);
-            HitParticleRings.spawn(serverLevel, target.getX(), target.getY() + 0.2, target.getZ());
-
-            serverLevel.playSound(null, target.getX(), target.getY(), target.getZ(),
-                    SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 2.0f, 1.2f);
-
-            if (target.isDeadOrDying()) {
-                KillCelebration.spawn(serverLevel, target.getX(), target.getY(), target.getZ());
-            }
-        }
     }
 
     @Override

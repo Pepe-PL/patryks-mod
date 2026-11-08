@@ -11,6 +11,11 @@
     "#"
   ],
   "result": {
-    "id": "patryks-mod:patryks_sword"
+    "id": "patryks-mod:patryks_sword",
+    "components": {
+      "minecraft:enchantments": {
+        "patryks-mod:frost_aspect": 2
+      }
+    }
   }
 }
