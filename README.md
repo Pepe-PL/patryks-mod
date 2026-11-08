@@ -2,14 +2,14 @@
 
   <img src="https://cdn.hackclub.com/01a1bb89-7d5d-7278-b99d-37a9d81b76a8/Patryk's_Mod_LOGO.png" width="140" alt="Patryk's Mod Logo" />
 
-# WebSoundboard
+# Patryk's Mod
 
 
 
   <p>My Minecraft mod for the Hack Club Hackcraft project.</p>
 
   <p>
-    <a href="https://pepe-pl.github.io/WebSoundboard/">
+    <a href="[https://modrinth.com](https://modrinth.com/mod/patryks-mod/versions)">
       <img src="https://cdn.hackclub.com/01a1bb8d-065d-7d4e-95dc-54064916842e/available-modrinth.png" height="40" alt="Available on Modrinth" />
     </a>
   </p>
@@ -21,8 +21,8 @@
   </p>
 
   <p>
-    <a href="https://github.com/Pepe-PL/WebSoundboard/stargazers"><img src="https://img.shields.io/github/stars/Pepe-PL/WebSoundboard?style=flat-square&color=2ea44f" alt="GitHub Repo Stars" /></a>
-    <a href="https://github.com/Pepe-PL/WebSoundboard/network/members"><img src="https://img.shields.io/github/forks/Pepe-PL/WebSoundboard?style=flat-square&color=blue" alt="GitHub Forks" /></a>
+    <a href="https://github.com/Pepe-PL/patryks-mod/stargazers"><img src="https://img.shields.io/github/stars/Pepe-PL/patryks-mod?style=flat-square&color=2ea44f" alt="GitHub Repo Stars" /></a>
+    <a href="https://github.com/Pepe-PL/patryks-mod/network/members"><img src="https://img.shields.io/github/forks/Pepe-PL/patryks-mod?style=flat-square&color=blue" alt="GitHub Forks" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="MIT License" /></a>
   </p>
 
