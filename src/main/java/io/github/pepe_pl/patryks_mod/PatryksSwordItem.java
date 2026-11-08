@@ -31,7 +31,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 @NullMarked
-@SuppressWarnings({"deprecation", "resource"})
+@SuppressWarnings("deprecation")
 public class PatryksSwordItem extends Item {
     private static final double ABILITY_RANGE = 28.0;
     private static final float ABILITY_DAMAGE = 250.0f;

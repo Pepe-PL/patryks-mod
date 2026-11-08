@@ -10,6 +10,7 @@ import io.github.pepe_pl.patryks_mod.enchantment.effect.SetBonusEnchantmentEffec
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
+@SuppressWarnings("unused")
 public class ModEnchantmentEffects {
     public static final MapCodec<LightningEnchantmentEffect> LIGHTNING_EFFECT = Registry.register(
             BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

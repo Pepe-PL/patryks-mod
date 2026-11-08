@@ -1,6 +1,7 @@
 package io.github.pepe_pl.patryks_mod.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
@@ -14,6 +15,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 @Mixin(Player.class)
 public abstract class PlayerAttackMixin {
+    @Unique
     private static final ResourceKey<Enchantment> FROST_ASPECT = ResourceKey.create(
             Registries.ENCHANTMENT, Main.id("frost_aspect"));
 
@@ -22,6 +24,8 @@ public abstract class PlayerAttackMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;hurtOrSimulate(Lnet/minecraft/world/damagesource/DamageSource;F)Z"),
             index = 1
     )
+    @Unique
+    @SuppressWarnings("resource")
     private float patryksMod$zeroDamageWithFrostAspect(float damage) {
         Player self = (Player) (Object) this;
         ItemStack weapon = self.getMainHandItem();
