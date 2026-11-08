@@ -55,12 +55,12 @@
   </tr>
   <tr>
     <td style="width:50%; text-align:center">
-      <p><img src="https://cdn.hackclub.com/01a1bbb0-6a87-7dd5-814b-515a4bd47714/patryks_helmet-64x.png" width="96" alt="Patryk's Helmet" /></p>
+      <p><img src="https://cdn.hackclub.com/01a1bbaf-e42b-715e-9e41-216af6c0d986/patryks_helmet-64x.png" width="96" alt="Patryk's Helmet" /></p>
       <h3>Patryk's Helmet</h3>
       <p>A custom amethyst helmet with massive resistance and durability that, when equipped alongside other pieces of Patryk's Armor, grants a Set Bonus.</p>
     </td>
     <td style="width:50%; text-align:center">
-      <p><img src="https://cdn.hackclub.com/01a1bbb0-6a87-7dd5-814b-515a4bd47714/patryks_chestplate-64x.png" width="96" alt="Patryk's Chestplate" /></p>
+      <p><img src="https://cdn.hackclub.com/01a1bbaf-f72f-75c1-83e2-32da6fb4d13e/patryks_chestplate-64x.png" width="96" alt="Patryk's Chestplate" /></p>
       <h3>Patryk's Chestplate</h3>
       <p>A custom amethyst chestplate with massive resistance and durability that grants a Set Bonus when equipped alongside other pieces of Patryk's Armor.</p>
     </td>
