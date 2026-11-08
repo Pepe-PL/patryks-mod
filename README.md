@@ -48,7 +48,7 @@
       <p>A custom amethyst sword that freezes a mob on impact and can push it while dealing damage to the surrounding area. Additionally, when you right-click, you can use it to jump high while emitting a Sonic Boom.</p>
     </td>
     <td width="50%">
-      <p align="center"><img src="https://cdn.hackclub.com/01a1bb2-94aa-7aa4-a9b7-feb13a4c55bf/Zrzut%20ekranu%202026-11-08%20150839%20(1).png" width="96" alt="Patryk's Shield" /></p>
+      <p align="center"><img src="https://cdn.hackclub.com/01a1bbb2-94aa-7aa4-a9b7-feb13a4c55bf/Zrzut%20ekranu%202026-11-08%20150839%20(1).png" width="96" alt="Patryk's Shield" /></p>
       <h3>Patryk's Shield</h3>
       <p>A custom amethyst shield that blocks all attacks when raised.</p>
     </td>
