@@ -78,3 +78,41 @@
     </td>
   </tr>
 </table>
+
+<table>
+  <tr>
+    <td colspan="2" align="center">
+      <h2>Custom Enchants</h2>
+      <p><b>Below are the custom enchantments that the mod adds to the game:</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>Frost Aspect</h3>
+      <p>Freezes the hit mob in place instead of dealing damage. Hitting an already frozen mob launches it like a projectile that damages anything it touches.</p>
+    </td>
+    <td width="50%">
+      <h3>Frost Resistance</h3>
+      <p>Reduces damage taken from frozen mobs launched by Frost Aspect. Each level reduces the damage by 20%.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>Thundering</h3>
+      <p>Strikes the target with lightning on hit.</p>
+    </td>
+    <td width="50%">
+      <h3>Amethyst Retribution</h3>
+      <p>Retributes damage back to the attacker when hit while wearing Patryk's Armor.</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" width="100%">
+      <h3>Set Bonus</h3>
+      <p>Granted when wearing the full set of Patryk's Armor, granting powerful bonuses.</p>
+    </td>
+  </tr>
+</table>
+
+<div align="center">
+Made with ❤️ by Pepe-PL and 🤖
